@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/services', label: 'Services', key: 'services' },
-    { href: '/services', label: 'Tuning', key: 'tuning' },
+    { href: '/tuning', label: 'Tuning', key: 'tuning' },
     { href: '/gallery', label: 'Gallery', key: 'gallery' },
     { href: '/about', label: 'About', key: 'about' },
   ];

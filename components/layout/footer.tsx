@@ -16,8 +16,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-200 dark:bg-[#120808] border-t border-slate-300 dark:border-[#472426] py-12 px-4 md:px-10">
-      <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="bg-slate-200 dark:bg-[#120808] border-t border-slate-300 dark:border-[#472426] py-12">
+      <div className="container grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Section */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="max-w-[1280px] mx-auto mt-12 pt-6 border-t border-slate-300 dark:border-[#472426] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-[#663336]">
+      <div className="container mt-12 pt-6 border-t border-slate-300 dark:border-[#472426] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-[#663336]">
         <p>© {currentYear} Auto Care & Tuning Ltd. All rights reserved.</p>
         <div className="flex gap-6">
           <Link href="/privacy" className="hover:text-[#ea2a33] transition-colors">

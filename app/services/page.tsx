@@ -1,316 +1,221 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Services() {
-  const [activeTab, setActiveTab] = useState<'care' | 'tuning'>('care');
-  const [phoneNumber, setPhoneNumber] = useState('');
+export default function Home() {
+    const professionalServices = [
+        {
+            icon: 'auto_fix_high',
+            title: 'Exterior Care',
+            description:
+                'Premium detailing, multi-stage polishing, ceramic coating, and wax finishes for a flawless mirror shine that lasts.',
+        },
+        {
+            icon: 'settings_input_component',
+            title: 'Interior Tuning',
+            description:
+                'Custom Italian leather upholstery, ambient lighting, and high-end audio-visual tech upgrades for peak cabin comfort.',
+        },
+        {
+            icon: 'shield',
+            title: 'Protective Coating',
+            description:
+                'Self-healing Paint Protection Film (PPF), window tinting, and underbody rust protection for total vehicle defense.',
+        },
+    ];
 
-  const careServices = [
-    {
-      title: 'Phủ Ceramic 9H+ Diamond',
-      description: 'Bảo vệ lớp sơn tối ưu, tạo độ bóng sâu như gương và khả năng chống bám nước vượt trội. Bảo hành chính hãng 5 năm.',
-      price: '8.500.000 VNĐ',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDkZjkqlNv02DhfoHMpvUU-l19lX0EKOX83oEraJaQrtHEuqZhh7kZcMrN_GOO14o4MTyKGZMH-RNMXGZCJhlgPCCJKdh2ulDWtSGLlDcGC18N1PGjHwWTuewDJlFmOtvFb5bXJkXMyxEPzm07Rcur_Qe-_gD8TpmBiSHmb-ZbO1nYRvJAXweaXmAvYbhnXjM2_1446xE6H9IVyh5esHak9dpgVp8EKHNBgaQ88c2P3F1_mbPc2vy58c9BNm23cAqzgFI0dk46CyPA6',
-      badge: 'Bán chạy',
-    },
-    {
-      title: 'Dán Film PPF (USA)',
-      description: 'Lớp bảo vệ sơn trong suốt, tự phục hồi vết xước. Chống đá văng và các tác nhân gây hại từ môi trường một cách tuyệt đối.',
-      price: '25.000.000 VNĐ',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDRXTxnIMqS6To5m9HJBSR0JIREhE0oareqJ7ICivXQzat2I2EUIq9aVblHHPsS9Q0TNLLfjr0jg1twbRzQedmYYQzL9pZxwtchmT_4-mQ4CDU_uLjHrunDY7Cc7qW6uWsz4ucC28MgnP144f8kR7SLi79RDpk9TJ1jO6nrsqUkI5kdThfzF9NbMRYVh3kTNU7fyikIvC6vUgfmjvYoxIJmUv9NwXoqv3SlvdwfblLRHgsIxmH8lUWAtqkuIDToQYmpysI4UNCbmkJH',
-    },
-    {
-      title: 'Vệ sinh Nội thất Chuyên sâu',
-      description: 'Khử trùng hơi nước nóng, bảo dưỡng da và nhựa cao cấp bằng dung dịch chuyên dụng. Đảm bảo không gian xe sạch khuẩn.',
-      price: '2.000.000 VNĐ',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU2BaO4uGaoY0QwOPeL4AaKkDv9IXG8BREIfEfZEDu0y-fMRqA0rE5b0TuPjx1gBY2ixRRXCZdSRpdmliJyMxvdar4HA8xQiZgQBcCAjPl6CppDWUJUjvMeXZekRvCh3Rk1V2MGwfW96UMCXfPRkCYAEbUmcx9MaJwcNv4ITsh4dL-85ct_KwGMTgOSYm7VHyuCPuVUQdN2t3dVPBx_x4Df5nh29VZqKZZtvrU3I24PBpvKJAhh6g9N9GCdNbSBG9h4J3ST2CwHzid',
-    },
-  ];
+    const whyChooseUs = [
+        {
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARX3BknauMUTZ1KY8o3B5Nd5sZpO7Sh0EShDZEGQky7esoe7r9KM0vzvLBdFG18hNN1hR5t7Jj1loV-vF49bEUGtVeH_Nk3qOT-IRw1clFkU93-WWqkJI0H_2AqVVEiweWZ0aUIjg8JW5A42GOZcZnr2NihuO5u7g-c7Wps1LgxiQymoGlxqFn0Q7OmvP3BCdM1tF5YTG77hjzmiuaWp-blbhp11EuPqBfdNzQMte7WDtwPwMTPtj65iFPbuZ6g4euBUD1dldRRf3z',
+            icon: 'verified',
+            title: '10+ Years Experience',
+            description: 'A decade of excellence in performance car care.',
+        },
+        {
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCuoLQBcSc5CKmaGG4ysP6KDkSX0ZWtXzyxFlq5rBdaphROKKWv3H3ex9RVvrT3ZEAr9il47QDJkYTXI_U3FHcEkIVS-id13uC7Wj4DktTl1IDJIB9ggS4EIjgwgllPYh5Y9agMACDLxFk_J_87ap6_hWOTjMaAtob1IXqQUMQdqwvSEkOvd433cKeStvhNkaGhB20-ClUcDlpBubenVqsTgJfFAOE-Py672T-RUoMkEhzd9P-zuzG_a7CG9wdvTE9lJfO6TpnP4wth',
+            icon: 'precision_manufacturing',
+            title: 'Latest Tech',
+            description: 'Utilizing AI-driven diagnostics and laser detailing tools.',
+        },
+        {
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBNPcwW-x7uM4HbzOtHNHcBmUKSuDrDDlsUnZknURTml21bjG5jd4rve9nGN7XJNT8PHE5-MHUGIU0EUQYSC7nsPXePaqREhMqNYxJAPEauORCyuzrUo6hFWwEXCCgl0DvdralUnIMF4NMeVSUGQhdml3B72p-Y27n3LkV4cKLCdEV1mmX9lG7InT7CQXLd3q56akB3sSBRb8UDCFpdKkftBnDRqGCoZteNJpxCV17HjWXFeVVErbNN9iuyBigmc3CkQXJFo6_APPA9',
+            icon: 'engineering',
+            title: 'Certified Techs',
+            description: 'Expert hands trained specifically for performance vehicles.',
+        },
+        {
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC550Sq9EXAwVGFletG2a3jDwG018cRVNfqPhYblVIBqbd36_ni2hfvlQrWx4yLvdFipS8gwcldPtEvTT071Ey1pyg0sljTf_GaVFmh0EULqLDj6a3zkI6ubEUbgGor-Vz8I-Qq7VDTpGtEuND46o_80MPfJ5RJxj9XzzNd5EIQGeD9sAOEWVcEYeDrNNCJKQ2CpIP1I0DwnWOqH5EIJznxnTzmwu4lEloKCw1Cqftm4lxsqiPgRzAFOLy268qVovfvRXTNHymRJ7ZD',
+            icon: 'history_edu',
+            title: 'Genuine Parts Only',
+            description: 'We never compromise on the quality of original components.',
+        },
+    ];
 
-  const tuningServices = [
-    {
-      title: 'ECU Remap Stage 1/2',
-      description: 'Tối ưu hóa phần mềm động cơ để giải phóng sức mạnh tiềm ẩn, cải thiện phản hồi chân ga và khả năng tăng tốc mạnh mẽ.',
-      price: '12.000.000 VNĐ',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBu9XKKYbUB-cYgqj1rSuMdwFtNb1LwZGclrvMzccfEmFYFHDoFXK_QFv6AOzQ0hAFG6DQuqPyO2xMt_fRMpp5LWoGo83Yy5S3ifuIqeECpm8ARxj4ki431KCGNhEGfHdh2SarihnHuHDVYV9Ykv-j8mZOGzvG2hoCzVfprYQ6FNhDlGIJal6crBi-sXhAVzjVHnZtRrb2I0dlHnpBPK2vQfzT2igEGjQ9jnX6Gg2716F0ZNSi_zZ4IGF9l949n5uE3QbFXb0Mmrd4w',
-      badge: '+ Tăng 20-30% Mã lực',
-    },
-    {
-      title: 'Hệ Thống Pô On/Off Full System',
-      description: 'Âm thanh uy lực, phấn khích với khả năng điều khiển đóng mở van linh hoạt. Tăng hiệu quả thoát khí cho động cơ.',
-      price: '18.500.000 VNĐ',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuApTO_e0Hb55H0Ra2PiC-O7uCT8aOqBNSnWCQKKDEb8wNCGnjajCwj8_nPIMa3PiZ_nxAuRhfjEDBZf7uCfNborl1dXXtyjncQL5jOJ6Y5uaW5Fw27-YmL4HmK8gPl5ErDB4xVYwwHB-uXdkwGmyHQXigm11whAeTOM0zIPqDBi7x_F4m5LuYHtAyySDRK8xsHbq1A08x2uDUQJoJX2SfKGKkfok3K_IcCXjUHiLLUdeWB_UpHuTm9lqB-_ozoIzPW4UYZF93THXVM2',
-    },
-    {
-      title: 'Cá nhân hóa Carbon Fiber',
-      description: 'Ốp Carbon Fiber thật 100% cho vô lăng, taplo và các chi tiết ngoại thất. Mang lại vẻ thể thao, đẳng cấp vượt trội.',
-      price: '5.000.000 VNĐ',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuByO4zkEpFS47JPewkCsufZNyG_bjkHQopWZtF2OY0_7ZzpxY8r_WH0Ui5ecMK16JNeZYO6yLAM5luAZwd26Zx_LzyoHMTNl9xBOmpM0LI8ILFW_P7mOIRnHyGqgzAMdgzT51cVmWl2R3xDYIMnq9p1n8RKOc2vIARhs4CdrYNiB6YBayO84K1P4WT0TSdedOg3j3yGMVEVw687DWdqI5VtX9Ru9qWlGBRNoVDq2hiThP3wMayOzmtjBpOxZesEqB1ANOGcNXJueszr',
-    },
-  ];
-
-  const handleConsultationSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Phone number:', phoneNumber);
-    alert('Cảm ơn bạn! Chúng tôi sẽ liên hệ trong vòng 30 phút.');
-    setPhoneNumber('');
-  };
-
-  return (
-    <div className="min-h-screen">
-      <main className="max-w-[1280px] mx-auto px-4 lg:px-10 py-8">
-        {/* Hero Section */}
-        <section className="mb-12">
-          <div className="relative overflow-hidden rounded-2xl bg-slate-900 aspect-[21/9] flex items-center justify-center text-center p-6">
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-40"
-              style={{
-                backgroundImage: `linear-gradient(to top, rgba(17, 8, 8, 1), rgba(17, 8, 8, 0.2)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXKwKVqwkldhhbOppU11qD8St7Kmvn-Dst1Zzahe3dSGpAU2QHj6WInFRUoYPh9Ey_lTk974DZl5QZhjMyPmdXmbtTbkeafMexGN3a_4wrM5oapmg3_XUWsM6rYH-drwiMqpYTXcyEL4lDbGGeg3eQqrzJ1FPfGptz_1LW1VzER4pZiSaCFx2BKv4_bDLB6aFt0R1RCew-E6zOyCoH4WCPx0UuPF8mKYgCnxgAXBpwRgV6pEf3u4twgt6tTojVDZ7sw_sVYuxmRoYk')`
-              }}
-            />
-            <div className="relative z-10 max-w-3xl">
-              <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-widest text-white uppercase bg-[#ea2a33] rounded">
-                Premium Services
-              </span>
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight leading-none uppercase">
-                Nâng Tầm Đẳng Cấp <br />
-                <span className="text-[#ea2a33] italic">Xế Cưng</span> Của Bạn
-              </h2>
-              <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
-                Từ chăm sóc chi tiết đến tối ưu hóa hiệu năng, chúng tôi cung cấp giải pháp toàn diện cho mọi dòng xe cao cấp.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <button
-                  onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-[#ea2a33] text-white font-bold px-8 py-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition-colors"
+    return (
+        <div className="min-h-screen">
+            <main>
+                {/* HERO SECTION */}
+                <section
+                    className="relative min-h-[90vh] flex items-center justify-center md:items-end md:justify-start"
+                    style={{
+                        backgroundImage: `
+              linear-gradient(to bottom, rgba(0,0,0,.3), rgba(33,17,17,.95)),
+              url('https://lh3.googleusercontent.com/aida-public/AB6AXuDf07Bhw563waY4UFXzwdiqQUggC_e3Va-pzx_QKzButiXN8rC4KQy8ZqN4xA2d_wVcHVkphEzVABKPzgu1sZvAk9qUGc5PZXtCc3GTWdbNKUrKHx23_jLEy5mNYDXpyUqQ0oXb3N2eNfiXpe3KwSG4WTTrJ3ewV-T9BwytOoU6e93fBa1i3s-P6CASbgw6FB2h7DihRp2T67Ll5XLP_SYXf5sCS9QbXCnnFN6aXNiSNJ0R7WMSiPJ4kCKxOc_mYlgF3v1hMF37XAwZ')
+            `,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
                 >
-                  Xem tất cả dịch vụ
-                  <span className="material-symbols-outlined">arrow_downward</span>
-                </button>
-                <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold px-8 py-3 rounded-lg border border-white/20 transition-all">
-                  Tư vấn qua Zalo
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+                    <div className="container pb-20 pt-32">
+                        <div className="max-w-[800px] animate-fade-in-up">
+                            <h1 className="text-white text-5xl md:text-7xl font-black leading-[1.1] mb-6 drop-shadow-lg">
+                                Chăm sóc và Độ Xe <br/>
+                                <span className="text-[#ea2a33]">Chuyên Nghiệp</span>
+                            </h1>
 
-        {/* Search and Filter Tabs */}
-        <section className="mb-10 sticky top-20 z-40 bg-background-light dark:bg-background-dark/95 py-4" id="services">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/10">
-            <div className="flex gap-8">
-              <button
-                onClick={() => setActiveTab('care')}
-                className={`flex flex-col items-center pb-4 border-b-4 transition-all ${
-                  activeTab === 'care'
-                    ? 'border-[#ea2a33]'
-                    : 'border-transparent hover:border-white/20'
-                }`}
-              >
-                <span className={`text-sm font-black uppercase tracking-wider ${
-                  activeTab === 'care' ? 'text-white' : 'text-slate-400 group-hover:text-white'
-                }`}>
-                  Chăm sóc xe
-                </span>
-                <span className="text-[10px] text-slate-500 font-bold uppercase">Exterior & Detailing</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('tuning')}
-                className={`flex flex-col items-center pb-4 border-b-4 transition-all group ${
-                  activeTab === 'tuning'
-                    ? 'border-[#ea2a33]'
-                    : 'border-transparent hover:border-white/20'
-                }`}
-              >
-                <span className={`text-sm font-black uppercase tracking-wider ${
-                  activeTab === 'tuning' ? 'text-white' : 'text-slate-400 group-hover:text-white'
-                }`}>
-                  Độ xe
-                </span>
-                <span className="text-[10px] text-slate-500 font-bold uppercase">Performance Tuning</span>
-              </button>
-            </div>
-            <div className="flex-1 max-w-md pb-4">
-              <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                <input
-                  type="text"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-[#ea2a33] focus:border-[#ea2a33] transition-all text-white placeholder:text-slate-500"
-                  placeholder="Tìm kiếm dịch vụ (Ceramic, ECU, PPF...)"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+                            <p className="text-slate-200 text-lg md:text-2xl font-light max-w-2xl leading-relaxed drop-shadow-md">
+                                Expert detailing and performance tuning for those who demand the best.
+                            </p>
 
-        {/* Category 1: Chăm sóc xe */}
-        {activeTab === 'care' && (
-          <section className="mb-16">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h3 className="text-2xl font-black uppercase tracking-tight flex items-center gap-3">
-                  <span className="w-2 h-8 bg-[#ea2a33] block"></span>
-                  Chăm sóc xe (Maintenance)
-                </h3>
-                <p className="text-slate-500 mt-1 font-medium">
-                  Giữ cho diện mạo xe luôn như mới với công nghệ chăm sóc hàng đầu.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {careServices.map((service, index) => (
-                <div
-                  key={index}
-                  className="group relative bg-white dark:bg-zinc-900/50 border border-slate-200 dark:border-white/5 rounded-2xl overflow-hidden hover:border-[#ea2a33]/50 transition-all"
-                >
-                  <div className="aspect-video relative overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      unoptimized
-                    />
-                    {service.badge && (
-                      <div className="absolute top-4 right-4 bg-[#ea2a33] text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest shadow-lg">
-                        {service.badge}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold mb-2 group-hover:text-[#ea2a33] transition-colors">
-                      {service.title}
-                    </h4>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center justify-between mt-auto">
-                      <div>
-                        <p className="text-[10px] text-slate-500 font-bold uppercase">Giá từ</p>
-                        <p className="text-lg font-black text-[#ea2a33]">{service.price}</p>
-                      </div>
-                      <button
-                        onClick={() => window.location.href = '/contact'}
-                        className="bg-white/5 hover:bg-[#ea2a33] hover:text-white text-slate-300 p-2.5 rounded-lg border border-white/10 transition-all"
-                      >
-                        <span className="material-symbols-outlined">arrow_forward</span>
-                      </button>
+                            <div className="mt-12 flex flex-col sm:flex-row gap-4">
+                                <Link
+                                    href="/contact"
+                                    className="bg-[#ea2a33] text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-red-700 transition hover:shadow-[0_0_20px_rgba(234,42,51,0.5)] text-center"
+                                >
+                                    Book Now
+                                </Link>
+                                <Link
+                                    href="/gallery"
+                                    className="backdrop-blur-md bg-white/10 border border-white/20 text-white px-10 py-5 rounded-full font-medium text-lg hover:bg-white/20 transition text-center"
+                                >
+                                    View Gallery
+                                </Link>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+                </section>
 
-        {/* Category 2: Độ xe */}
-        {activeTab === 'tuning' && (
-          <section className="mb-16">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h3 className="text-2xl font-black uppercase tracking-tight flex items-center gap-3">
-                  <span className="w-2 h-8 bg-[#ea2a33] block"></span>
-                  Độ xe (Performance & Style)
-                </h3>
-                <p className="text-slate-500 mt-1 font-medium">
-                  Bản lĩnh trên mọi cung đường với nâng cấp hiệu năng và cá nhân hóa.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tuningServices.map((service, index) => (
-                <div
-                  key={index}
-                  className="group relative bg-white dark:bg-zinc-900/50 border border-slate-200 dark:border-white/5 rounded-2xl overflow-hidden hover:border-[#ea2a33]/50 transition-all"
-                >
-                  <div className="aspect-video relative overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      unoptimized
-                    />
-                    {service.badge && (
-                      <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur px-3 py-1 rounded text-[10px] text-white font-bold flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">bolt</span>
-                        {service.badge}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold mb-2 group-hover:text-[#ea2a33] transition-colors">
-                      {service.title}
-                    </h4>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center justify-between mt-auto">
-                      <div>
-                        <p className="text-[10px] text-slate-500 font-bold uppercase">Giá từ</p>
-                        <p className="text-lg font-black text-[#ea2a33]">{service.price}</p>
-                      </div>
-                      <button
-                        onClick={() => window.location.href = '/contact'}
-                        className="bg-[#ea2a33] text-white font-bold px-4 py-2 rounded-lg text-xs uppercase tracking-wider hover:bg-red-700 transition-colors"
-                      >
-                        Liên hệ tư vấn
-                      </button>
+                {/* SERVICES SECTION */}
+                <section className="py-24 bg-white dark:bg-[#211111]">
+                    <div className="container">
+                        <div className="text-center mb-16 max-w-3xl mx-auto">
+                            <div className="inline-flex items-center justify-center p-2 mb-4 bg-red-100 dark:bg-red-900/30 rounded-full">
+                                <span className="material-symbols-outlined text-[#ea2a33] text-sm">handyman</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+                                Dịch Vụ Của Chúng Tôi
+                            </h2>
+                            <p className="text-slate-600 dark:text-[#c89295] text-lg">
+                                Giải pháp toàn diện từ chăm sóc ngoại thất đến nâng cấp nội thất
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {professionalServices.map((service, index) => (
+                                <div
+                                    key={index}
+                                    className="group relative p-8 rounded-3xl bg-slate-50 dark:bg-[#2a1617] border border-slate-100 dark:border-[#472426]
+                    hover:border-[#ea2a33] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col items-start text-left overflow-hidden"
+                                >
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#ea2a33]/5 rounded-bl-[100px] transition-all group-hover:bg-[#ea2a33]/10" />
+                                    
+                                    <div className="inline-flex p-4 rounded-2xl bg-white dark:bg-[#331a1b] text-[#ea2a33] shadow-md mb-6 group-hover:scale-110 transition-transform duration-300 ring-1 ring-slate-100 dark:ring-[#472426]">
+                                        <span className="material-symbols-outlined text-4xl">{service.icon}</span>
+                                    </div>
+                                    
+                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-slate-600 dark:text-[#c89295] leading-relaxed mb-6">
+                                        {service.description}
+                                    </p>
+                                    
+                                    <Link
+                                        href="/services"
+                                        className="mt-auto items-center text-[#ea2a33] font-bold inline-flex gap-2 group-hover:gap-3 transition-all"
+                                    >
+                                        Xem chi tiết
+                                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+                </section>
 
-        {/* Newsletter / Contact Section */}
-        <section className="bg-slate-100 dark:bg-white/5 rounded-3xl p-8 lg:p-12 border border-slate-200 dark:border-white/10 text-center">
-          <h3 className="text-3xl font-black mb-4 uppercase italic tracking-tight text-slate-900 dark:text-white">
-            Cần tư vấn gói dịch vụ phù hợp?
-          </h3>
-          <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
-            Để lại thông tin, đội ngũ kỹ thuật viên của chúng tôi sẽ liên hệ tư vấn giải pháp tối ưu nhất cho xế yêu của bạn trong vòng 30 phút.
-          </p>
-          <form onSubmit={handleConsultationSubmit} className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-            <input
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="flex-1 bg-white dark:bg-black border border-slate-200 dark:border-white/20 rounded-xl px-6 py-4 text-sm focus:ring-[#ea2a33] text-slate-900 dark:text-white placeholder:text-slate-500"
-              placeholder="Số điện thoại của bạn"
-              required
-            />
-            <button
-              type="submit"
-              className="bg-[#ea2a33] text-white font-black px-10 py-4 rounded-xl uppercase tracking-widest hover:bg-red-700 transition-all shadow-xl shadow-[#ea2a33]/20"
-            >
-              Gửi yêu cầu
-            </button>
-          </form>
-        </section>
-      </main>
+                {/* WHY CHOOSE US */}
+                <section className="bg-slate-100 dark:bg-[#1a0d0e] py-28 relative overflow-hidden">
+                    {/* Background Elements */}
+                    <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none" 
+                         style={{ backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(234, 42, 51, 0.05) 0%, transparent 40%)' }} />
 
-      {/* Floating Contact Widget */}
-      <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-        <a
-          href="tel:0900XXXXXX"
-          className="size-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
-          aria-label="Call us"
-        >
-          <span className="material-symbols-outlined">call</span>
-        </a>
-        <a
-          href="#"
-          className="size-14 bg-[#ea2a33] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
-          aria-label="Chat with us"
-        >
-          <span className="material-symbols-outlined">forum</span>
-        </a>
-      </div>
-    </div>
-  );
+                    <div className="container relative z-10">
+                        <div className="text-center max-w-4xl mx-auto mb-20 px-4">
+                            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">
+                                Tại Sao Chọn Chúng Tôi?
+                            </h2>
+                            <p className="text-slate-600 dark:text-[#c89295] text-xl leading-relaxed">
+                                Kết hợp đam mê tốc độ và kỹ thuật chính xác để mang lại sự hoàn hảo.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                            {whyChooseUs.map((item, index) => (
+                                <div key={index} className="group flex flex-col bg-white dark:bg-[#221112] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-[#ea2a33]/20">
+                                    <div className="relative aspect-video overflow-hidden">
+                                        <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-60" />
+                                        <div className="absolute bottom-3 left-3 bg-[#ea2a33] text-white p-2 rounded-xl">
+                                             <span className="material-symbols-outlined text-xl block">{item.icon}</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-6 flex-1 flex flex-col">
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#ea2a33] transition-colors">{item.title}</h3>
+                                        <p className="text-sm text-slate-600 dark:text-[#c89295] leading-relaxed">{item.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* CTA SECTION */}
+                <section className="relative py-28 isolate overflow-hidden">
+                     <div className="absolute inset-0 bg-[#000000]">
+                         <div className="absolute inset-0 bg-linear-to-br from-[#2a1415] to-[#000000] opacity-90" />
+                         {/* Optional artistic blur */}
+                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ea2a33] opacity-20 blur-[120px] rounded-full" />
+                     </div>
+
+                    <div className="container relative text-center">
+                        <div className="max-w-4xl mx-auto px-4">
+                            <span className="inline-block text-[#ea2a33] font-bold tracking-widest uppercase mb-4 text-sm md:text-base">
+                                Sẵn sàng nâng tầm xế yêu?
+                            </span>
+                            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
+                                Đặt Lịch Hẹn Ngay Hôm Nay
+                            </h2>
+                            <p className="text-[#c89295] text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                                Tham gia cùng hơn 2,000 khách hàng hài lòng đã tin tưởng giao phó chiếc xe ước mơ của họ cho chúng tôi.
+                            </p>
+                            
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <Link
+                                    href="/contact"
+                                    className="group relative inline-flex items-center justify-center bg-[#ea2a33] text-white font-bold uppercase tracking-wider py-5 px-12 rounded-full overflow-hidden shadow-[0_10px_30px_-5px_rgba(234,42,51,0.5)] transition-all hover:shadow-[0_20px_40px_-5px_rgba(234,42,51,0.6)] hover:scale-105"
+                                >
+                                    <span className="relative z-10">Đặt Lịch Ngay</span>
+                                    <div className="absolute inset-0 bg-linear-to-r from-red-600 to-[#ea2a33] opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </Link>
+                                <div className="text-slate-400 text-sm">
+                                    hoặc gọi <span className="text-white font-bold text-lg ml-1">1900-123-456</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    );
 }
